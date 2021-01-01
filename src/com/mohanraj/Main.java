@@ -1,6 +1,6 @@
 package com.mohanraj;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -34,12 +34,14 @@ public class Main implements Serializable {
                 System.out.println("\nRead Operation");
                 System.out.println("Enter the Key");
                 key = scanner.nextLine();
-                read(hashMap, key);
+                if (authorization(hashMap, key))
+                    read(hashMap, key);
             } else if (num == 3) {
                 System.out.println("\nDelete Operation");
                 System.out.println("Enter the Key");
                 key = scanner.nextLine();
-                delete(hashMap, key);
+                if (authorization(hashMap, key))
+                    delete(hashMap, key);
             } else
                 System.out.println("Please enter the valid number\n");
             WriteObject.write(path, hashMap);
@@ -48,6 +50,20 @@ public class Main implements Serializable {
             scanner.nextLine();
             if (num == 2)
                 stop = false;
+        }
+    }
+
+    private static boolean authorization(HashMap<String, Details> hashMap, String key) {
+        Details details = hashMap.get(key);
+        if (details == null) {
+            System.out.println("The Key doesn't exists");
+            return false;
+        } else {
+            if (details.getLiveTime() < (System.currentTimeMillis() / 1000)) {
+                System.out.println("Live time exceeded ......");
+                return false;
+            } else
+                return true;
         }
     }
 
@@ -72,22 +88,23 @@ public class Main implements Serializable {
         System.out.println("Enter the message {Type:String}");
         message = scanner.nextLine();
         System.out.println("Enter the Time-To-Live Status {Type:Integer} \n1 - True \n2 - False");
-        if(scanner.nextInt() == 1) {
+        if (scanner.nextInt() == 1) {
             liveStatus = true;
             scanner.nextLine();
             System.out.println("Enter the liveTime(Seconds) {Type:Integer}");
-            liveTime = scanner.nextInt();
+            liveTime = (int) ((System.currentTimeMillis() / 1000) + scanner.nextInt());
             scanner.nextLine();
+            //System.out.println(liveTime);
         }
         // Saving....
-        Details details = new Details(name, emailID, phoneNumber, message, liveTime , liveStatus);
+        Details details = new Details(name, emailID, phoneNumber, message, liveTime, liveStatus);
         hashMap.put(key, details);
         System.out.println("Creation operation success\n");
     }
 
     private static String vaildateKey(HashMap<String, Details> hashMap, String key) {
         String newKey = key;
-        if(newKey.length()>32){
+        if (newKey.length() > 32) {
             System.out.println("The Key must not exceed 32 characters");
             System.out.println("Enter a new Key for create operation \nNote : Key should not exceed 32 characters");
             newKey = scanner.nextLine();
@@ -104,21 +121,14 @@ public class Main implements Serializable {
 
     private static void read(HashMap<String, Details> hashMap, String key) {
         Details details = hashMap.get(key);
-        if (details == null) {
-            System.out.println("The Key doesn't exists");
-        }
-        else {
-            System.out.println(details);
-            System.out.println("Read operation success\n");
-        }
+        System.out.println(details);
+        System.out.println("Read operation success\n");
     }
 
     private static void delete(HashMap<String, Details> hashMap, String key) {
-        if (hashMap.get(key) == null) {
-            System.out.println("The Key doesn't exists");
-        } else {
-            hashMap.remove(key);
-            System.out.println("Delete operation success\n");
-        }
+        hashMap.remove(key);
+        System.out.println("Delete operation success\n");
     }
+
+
 }
