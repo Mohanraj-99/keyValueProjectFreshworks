@@ -8,25 +8,25 @@ public class Details implements Serializable {
     private Long phoneNumber;
     private String message;
     private Integer liveTime;
-    private Boolean status;
+    private Boolean liveStatus;
 
-    public Details(String name, String emailID, Long phoneNumber, String message, Integer liveTime) {
+    public Details(String name, String emailID, Long phoneNumber, String message, Integer liveTime , Boolean liveStatus) {
         this.name = name;
         this.emailID = emailID;
         this.phoneNumber = phoneNumber;
         this.message = message;
         this.liveTime = liveTime;
-        this.status = true;
+        this.liveStatus = liveStatus;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "\nname='" + name  +
-                "\nemailID='" + emailID +
-                "\nphoneNumber=" + phoneNumber +
-                "\nmessage='" + message +
-                '}';
+                "\nname = " + name +
+                "\nemailID =" + emailID +
+                "\nphoneNumber = " + phoneNumber +
+                "\nmessage = " + message +
+                "\n}";
     }
 
     public String getName() {
@@ -69,11 +69,7 @@ public class Details implements Serializable {
         this.liveTime = liveTime;
     }
 
-    public Boolean getStatus() {
-        return status;
-    }
+    public Boolean getLiveStatus() { return liveStatus; }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
+    public void setLiveStatus(Boolean liveStatus) { this.liveStatus = liveStatus; }
 }

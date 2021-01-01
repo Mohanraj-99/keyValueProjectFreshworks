@@ -55,8 +55,8 @@ public class Main implements Serializable {
         // Getting Key and Value
         String key, name, emailID, message;
         long phoneNumber;
-        int liveTime;
-        //Boolean status;
+        int liveTime = -1;
+        boolean liveStatus = false;
         System.out.println("Enter the Key {Type:String}\nNote : Key should not exceed 32 characters");
         {
             key = scanner.nextLine();
@@ -71,12 +71,16 @@ public class Main implements Serializable {
         scanner.nextLine();
         System.out.println("Enter the message {Type:String}");
         message = scanner.nextLine();
-        System.out.println("Enter the liveTime(Seconds) {Type:Integer}");
-        liveTime = scanner.nextInt();
-        scanner.nextLine();
-
+        System.out.println("Enter the Time-To-Live Status {Type:Integer} \n1 - True \n2 - False");
+        if(scanner.nextInt() == 1) {
+            liveStatus = true;
+            scanner.nextLine();
+            System.out.println("Enter the liveTime(Seconds) {Type:Integer}");
+            liveTime = scanner.nextInt();
+            scanner.nextLine();
+        }
         // Saving....
-        Details details = new Details(name, emailID, phoneNumber, message, liveTime);
+        Details details = new Details(name, emailID, phoneNumber, message, liveTime , liveStatus);
         hashMap.put(key, details);
         System.out.println("Creation operation success\n");
     }
