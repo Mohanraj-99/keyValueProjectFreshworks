@@ -102,9 +102,6 @@ public class Main implements Serializable {
         Details details = hashMap.get(key);
         if (details == null) {
             System.out.println("The Key doesn't exists");
-            /*System.out.println("Enter a valid Key for read operation {Type:String}");
-            newKey = scanner.nextLine();
-            details = read(hashMap, newKey);*/
         }
         else {
             System.out.println(details);
@@ -115,20 +112,9 @@ public class Main implements Serializable {
     private static void delete(HashMap<String, Details> hashMap, String key) {
         if (hashMap.get(key) == null) {
             System.out.println("The Key doesn't exists");
-            /*System.out.println("Enter a valid Key for delete operation {Type:String}");
-            newKey = scanner.nextLine();
-            delete(hashMap, newKey);*/
         } else {
             hashMap.remove(key);
             System.out.println("Delete operation success\n");
         }
     }
 }
-
-// make time to live optional
-// live time based remove data part completely
-// Make it as a library
-// Value should not exceed 16KB
-// Total data source must be <1GB
-// make all methods thread safe
-// Part 2 --> 2 check
