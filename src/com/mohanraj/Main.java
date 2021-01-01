@@ -1,6 +1,6 @@
 package com.mohanraj;
 
-import java.io.IOException; //file.lenght/1021*1024
+import java.io.IOException; 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
