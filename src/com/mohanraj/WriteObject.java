@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class WriteObject{
 
-    public static void write(String filePath,HashMap<String,Details> hashMap) throws IOException {
+    public static void write(String filePath, HashMap<String, Details> hashMap) throws IOException {
         ObjectOutputStream objectOutputStream = null;
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);

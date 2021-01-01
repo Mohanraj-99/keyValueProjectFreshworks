@@ -5,14 +5,15 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
 public class Main implements Serializable {
 
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
         // Basic Variables
-        boolean stop = true;
-        int num;
+        boolean stop = true , flag = true;
+        int num ;
         String key, path = "C:\\Users\\Mohanraj G\\Desktop\\Mohanraj_Freshworks\\src\\com\\mohanraj\\customdata.dat";
         HashMap<String, Details> hashMap;
 
@@ -24,12 +25,26 @@ public class Main implements Serializable {
 
         // Source Code
         while (stop) {
+            try {
+                if ((ObjectSizeFetch.getObjectSize(hashMap) / (1024 * 1024 * 1024) < 1)) {
+                    System.out.println("Your file size exceeded 1GB");
+                    System.out.println("Creation operation not applicable");
+                    flag = false;
+                } else
+                    flag = true;
+            }
+            catch (NullPointerException e){
+                //e.printStackTrace();
+            }
             System.out.println("\nEnter \n1.Create \n2.Read \n3.Delete");
             num = scanner.nextInt();
             scanner.nextLine();
             if (num == 1) {
                 System.out.println("\nCreate Operation");
-                create(hashMap);
+                if(flag)
+                    create(hashMap);
+                else
+                    System.out.println("Creation operation not applicable as your file size exceeded 1GB");
             } else if (num == 2) {
                 System.out.println("\nRead Operation");
                 System.out.println("Enter the Key");
@@ -98,6 +113,18 @@ public class Main implements Serializable {
         }
         // Saving....
         Details details = new Details(name, emailID, phoneNumber, message, liveTime, liveStatus);
+        try {
+            if ((ObjectSizeFetch.getObjectSize(details) / 1024) > 16) {
+                System.out.println("Your Value size exceeded 16KB");
+                System.out.println("Creation operation failed");
+            } else {
+                hashMap.put(key, details);
+                System.out.println("Creation operation success\n");
+            }
+        }
+        catch (NullPointerException e){
+            //e.printStackTrace();
+        }
         hashMap.put(key, details);
         System.out.println("Creation operation success\n");
     }
@@ -129,6 +156,4 @@ public class Main implements Serializable {
         hashMap.remove(key);
         System.out.println("Delete operation success\n");
     }
-
-
 }

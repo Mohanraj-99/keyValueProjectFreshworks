@@ -23,7 +23,7 @@ public class Details implements Serializable {
     public String toString() {
         return "{" +
                 "\nname = " + name +
-                "\nemailID =" + emailID +
+                "\nemailID = " + emailID +
                 "\nphoneNumber = " + phoneNumber +
                 "\nmessage = " + message +
                 "\n}";
