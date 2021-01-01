@@ -16,6 +16,12 @@ public class Main implements Serializable {
         int num;
         String key, path = "C:\\Users\\Mohanraj G\\Desktop\\Mohanraj_Freshworks\\src\\com\\mohanraj\\customdata.dat";
         HashMap<String, Details> hashMap;
+        System.out.println("Do you need to store file on your preferred location \n1 - Yes \n2 - No");
+        if(scanner.nextInt()==1){
+            scanner.nextLine();
+            System.out.println("Enter the path :");
+            path = scanner.nextLine();
+        }
 
         // Data Source
         hashMap = new HashMap<>();
