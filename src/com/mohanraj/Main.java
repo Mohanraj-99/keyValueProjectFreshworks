@@ -59,7 +59,7 @@ public class Main implements Serializable {
             System.out.println("The Key doesn't exists");
             return false;
         } else {
-            if (details.getLiveTime() < (System.currentTimeMillis() / 1000)) {
+            if (details.getLiveTime()!=-1 && (details.getLiveTime() < (System.currentTimeMillis() / 1000))) {
                 System.out.println("Live time exceeded ......");
                 return false;
             } else
