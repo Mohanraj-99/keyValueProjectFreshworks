@@ -10,7 +10,7 @@ public class Details implements Serializable {
     private Integer liveTime;
     private Boolean liveStatus;
 
-    public Details(String name, String emailID, Long phoneNumber, String message, Integer liveTime , Boolean liveStatus) {
+    public Details(String name, String emailID, Long phoneNumber, String message, Integer liveTime, Boolean liveStatus) {
         this.name = name;
         this.emailID = emailID;
         this.phoneNumber = phoneNumber;
@@ -69,7 +69,11 @@ public class Details implements Serializable {
         this.liveTime = liveTime;
     }
 
-    public Boolean getLiveStatus() { return liveStatus; }
+    public Boolean getLiveStatus() {
+        return liveStatus;
+    }
 
-    public void setLiveStatus(Boolean liveStatus) { this.liveStatus = liveStatus; }
+    public void setLiveStatus(Boolean liveStatus) {
+        this.liveStatus = liveStatus;
+    }
 }

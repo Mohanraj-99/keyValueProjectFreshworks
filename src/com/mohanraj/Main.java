@@ -12,8 +12,8 @@ public class Main implements Serializable {
 
     public static void main(String[] args) throws IOException {
         // Basic Variables
-        boolean stop = true , flag = true;
-        int num ;
+        boolean stop = true, flag = true;
+        int num;
         String key, path = "C:\\Users\\Mohanraj G\\Desktop\\Mohanraj_Freshworks\\src\\com\\mohanraj\\customdata.dat";
         HashMap<String, Details> hashMap;
 
@@ -32,8 +32,7 @@ public class Main implements Serializable {
                     flag = false;
                 } else
                     flag = true;
-            }
-            catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 //e.printStackTrace();
             }
             System.out.println("\nEnter \n1.Create \n2.Read \n3.Delete");
@@ -41,7 +40,7 @@ public class Main implements Serializable {
             scanner.nextLine();
             if (num == 1) {
                 System.out.println("\nCreate Operation");
-                if(flag)
+                if (flag)
                     create(hashMap);
                 else
                     System.out.println("Creation operation not applicable as your file size exceeded 1GB");
@@ -74,7 +73,7 @@ public class Main implements Serializable {
             System.out.println("The Key doesn't exists");
             return false;
         } else {
-            if (details.getLiveTime()!=-1 && (details.getLiveTime() < (System.currentTimeMillis() / 1000))) {
+            if (details.getLiveTime() != -1 && (details.getLiveTime() < (System.currentTimeMillis() / 1000))) {
                 System.out.println("Live time exceeded ......");
                 return false;
             } else
@@ -121,8 +120,7 @@ public class Main implements Serializable {
                 hashMap.put(key, details);
                 System.out.println("Creation operation success\n");
             }
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
             //e.printStackTrace();
         }
         hashMap.put(key, details);
