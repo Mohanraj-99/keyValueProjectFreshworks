@@ -26,7 +26,7 @@ public class Main implements Serializable {
         // Source Code
         while (stop) {
             try {
-                if ((ObjectSizeFetch.getObjectSize(hashMap) / (1024 * 1024 * 1024) < 1)) {
+                if ((ObjectSizeFetch.getObjectSize(hashMap) / (1024 * 1024 * 1024) > 1)) {
                     System.out.println("Your file size exceeded 1GB");
                     System.out.println("Creation operation not applicable");
                     flag = false;
