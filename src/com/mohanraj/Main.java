@@ -87,7 +87,7 @@ public class Main implements Serializable {
         }
     }
 
-    private static void create(HashMap<String, Details> hashMap) {
+    private static synchronized void create(HashMap<String, Details> hashMap) {
         // Getting Key and Value
         String key, name, emailID, message;
         long phoneNumber;
@@ -150,13 +150,13 @@ public class Main implements Serializable {
         return newKey;
     }
 
-    private static void read(HashMap<String, Details> hashMap, String key) {
+    private static synchronized void read(HashMap<String, Details> hashMap, String key) {
         Details details = hashMap.get(key);
         System.out.println(details);
         System.out.println("Read operation success\n");
     }
 
-    private static void delete(HashMap<String, Details> hashMap, String key) {
+    private static synchronized void delete(HashMap<String, Details> hashMap, String key) {
         hashMap.remove(key);
         System.out.println("Delete operation success\n");
     }
